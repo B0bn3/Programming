@@ -1,20 +1,21 @@
 import sqlite3
 
-DATABASE = 'cars.db'
+DATABASE = 'CARS_FINAL.db'
 #hello
 
 def print_all_car():
-    speed = input('What speed: ')
     with sqlite3.connect(DATABASE) as db:
-        db = sqlite3.connect('cars.db')
+        db = sqlite3.connect('CARS_FINAL.db')
         cursor = db.cursor()
-        sql = "SELECT car_name,top_speed FROM car WHERE top_speed > ?;"
-        cursor.execute(sql,(speed,))
+        sql = "SELECT * FROM CARS;"
+        cursor.execute(sql)
         results = cursor.fetchall()
         #Print them nicely
+        print(f"name                            top_speed     manufactor")
 
         for car in results:
-            print(f"Car: {car[0]} Top Speed : {car[1]}")
+            print(f"{car[2]:34} {car[1]:<15} {car[3]}")
+            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
 
 
 
