@@ -11,11 +11,11 @@ def print_all_car():
         cursor.execute(sql)
         results = cursor.fetchall()
         #Print them nicely
-        print(f"name                            top_speed     manufactor")
+        print(f"   Name                         Top_speed      Manufactor       Horse_power")
 
         for car in results:
-            print(f"{car[2]:34} {car[1]:<15} {car[3]}")
-            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
+            print(f"{car[2]:34} {car[1]:<15} {car[3]:<20} {car[4]}")
+            #print(f"Name: {car[2]} Top speed : {car[1]} Manufactor : {car[3]}")
         db.close
 
 def print_top_speed():
@@ -26,23 +26,55 @@ def print_top_speed():
         cursor.execute(sql)
         results = cursor.fetchall()
         #Print them nicely
-        print(f"top_speed")
+        print(f"Top_speed        Name")
+
+        for car in results:
+            print(f"{car[0]:<10} {car[1]:}")
+            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
+        db.close
+
+def print_manufacturers():
+    with sqlite3.connect(DATABASE) as db:
+        db = sqlite3.connect('CARS_FINAL.db')
+        cursor = db.cursor()
+        sql = "SELECT manufactor FROM CARS;"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        #Print them nicely
+        print(f"Manufactor")
 
         for car in results:
             print(f"{car[0]:}")
             #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
         db.close
 
+def print_horse_power():
+    with sqlite3.connect(DATABASE) as db:
+        db = sqlite3.connect('CARS_FINAL.db')
+        cursor = db.cursor()
+        sql = "SELECT horse_power,name FROM CARS ORDER BY top_speed DESC;"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        #Print them nicely
+        print(f"Horse_power        Name")
+
+        for car in results:
+            print(f"{car[0]:<12} {car[1]:}")
+            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
+        db.close
 
 while True:
-    user_input = input("\nWhat would like to do.\n1. Print all cars\n2. Print top_speed\n7. exit\n")
+    user_input = input("\nWhat would like to do.\n1. Print all cars\n2. Print top_speed\n3. Print all manufacturers\n4. Print horse_power\n7. exit\n")
     if user_input == "1":
         print_all_car()
     elif user_input == "2":
         print_top_speed()
     elif user_input == "3":
-        pass
+        print_manufacturers()
+    elif user_input == "4":
+        print_horse_power()
     elif user_input == "7":
+        print('Goodbye')
         break
     else:
         print("Thats not an option\n")
