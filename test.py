@@ -67,11 +67,14 @@ def print_get_car(car):
         cursor = db.cursor()
         cursor.execute("SELECT * FROM manufactor WHERE name = ?;", (car,))
         results = cursor.fetchall()
+        if results:
+            print(f"\nResults for {ask}:")
+            print(f"Name      Manufactor")
+            for car in results:
+                print(f"{car[2]:<12} {car[1]:}")
+        else:
+            print(f"Sorry, {ask} is not an option in the database.")
         #Print them nicely
-        print(f"Name      Manufactor")
-        for car in results:
-            print(f"{car[2]:<12} {car[1]:}")
-            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
 
 
 while True:
