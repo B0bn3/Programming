@@ -1,9 +1,9 @@
 import sqlite3
 
 DATABASE = 'CARS_FINAL.db'
-#hello
 
 def print_all_car():
+    #This function prints all data 
     with sqlite3.connect(DATABASE) as db:
         db = sqlite3.connect('CARS_FINAL.db')
         cursor = db.cursor()
@@ -19,6 +19,7 @@ def print_all_car():
         
 
 def print_top_speed():
+    #This function prints the top speed of ever car
     with sqlite3.connect(DATABASE) as db:
         db = sqlite3.connect('CARS_FINAL.db')
         cursor = db.cursor()
@@ -34,6 +35,7 @@ def print_top_speed():
         
 
 def print_manufacturers():
+    #This function prints the manufactor of every car
     with sqlite3.connect(DATABASE) as db:
         db = sqlite3.connect('CARS_FINAL.db')
         cursor = db.cursor()
@@ -49,6 +51,7 @@ def print_manufacturers():
         
 
 def print_horse_power():
+    #This function prints the horse power of every car
     with sqlite3.connect(DATABASE) as db:
         db = sqlite3.connect('CARS_FINAL.db')
         cursor = db.cursor()
@@ -63,6 +66,7 @@ def print_horse_power():
             #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
 
 def print_get_car(car):
+     #This function allows the user to choose a speific manfacuturer
      with sqlite3.connect(DATABASE) as db:
         cursor = db.cursor()
         cursor.execute("SELECT * FROM manufactor WHERE name = ?;", (car,))
@@ -74,7 +78,6 @@ def print_get_car(car):
                 print(f"{car[2]:<12} {car[1]:}")
         else:
             print(f"Sorry, {ask} is not an option in the database.")
-        #Print them nicely
 
 
 while True:
