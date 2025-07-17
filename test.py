@@ -32,23 +32,7 @@ def print_top_speed():
         for car in results:
             print(f"{car[0]:<10} {car[1]:}")
             #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
-        
-
-def print_manufacturers():
-    #This function prints the manufactor of every car
-    with sqlite3.connect(DATABASE) as db:
-        db = sqlite3.connect('CARS_FINAL.db')
-        cursor = db.cursor()
-        sql = "SELECT manufactor FROM CARS;"
-        cursor.execute(sql)
-        results = cursor.fetchall()
-        #Print them nicely
-        print(f"Manufactor")
-
-        for car in results:
-            print(f"{car[0]:}")
-            #print(f"name: {car[2]} top speed : {car[1]} manufactor : {car[3]}")
-        
+         
 
 def print_horse_power():
     #This function prints the horse power of every car
@@ -74,24 +58,21 @@ def print_get_car(car):
         if results:
             print(f"\nResults for {ask}:")
             print(f"Name      Manufactor")
-            for car in results:
-                print(f"{car[2]:<12} {car[1]:}")
+            for car in results:1
+            print(f"{car[2]:<12} {car[1]:}")
         else:
             print(f"Sorry, {ask} is not an option in the database.")
 
-
 while True:
-    user_input = input("\nWhat would you like to do..\n1. See a speific manufacturer\n2. Print top_speed\n3. Print all manufacturers\n4. Print horse_power\n5. Print all cars\n7. exit\n")
+    user_input = input("\nWhat would you like to do..\n1. See a speific manufacturer\n2. Print all manufacturers\n3. Print horse_power\n4. Print all cars\n7. exit\n")
     if user_input == "1":
         ask = input('What car would you like to see? ')
         print_get_car(ask)
     elif user_input == "2":
         print_top_speed()
     elif user_input == "3":
-        print_manufacturers()
-    elif user_input == "4":
         print_horse_power()
-    elif user_input == "5":
+    elif user_input == "4":
         print_all_car()
     elif user_input == "7":
         print('Goodbye')
